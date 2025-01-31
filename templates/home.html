@@ -16,7 +16,7 @@
     <section class="section-name padding-y-sm">
       <div class="container">
         <header class="section-heading">
-          <a href="/store" class="btn btn-outline-primary float-right"
+          <a href="{% url 'store' %}" class="btn btn-outline-primary float-right"
             >See all</a
           >
           <h3 class="section-title">Popular products</h3>
@@ -25,7 +25,8 @@
           {% for product in products %}
           <div class="col-md-3">
             <div class="card card-product-grid">
-              <a href="./product-detail.html" class="img-wrap">
+              
+              <a href="{{product.get_url}}" class="img-wrap">
                 <img src="{{product.image.url}}" />
               </a>
               <figcaption class="info-wrap">
