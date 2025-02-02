@@ -1,12 +1,15 @@
 from django.shortcuts import get_object_or_404, render
 from category.models import Category
 from .models import Product
+from cart.models import CartItem
+from cart.views import _cart_id
 
 def product_detail(request, category_slug, product_slug):
-    product = get_object_or_404(Product,slug=product_slug, category__slug=category_slug)
-        
+    product = get_object_or_404(Product, slug=product_slug, category__slug=category_slug)    
+    in_cart = CartItem.objects.filter(cart__session_id = _cart_id(request), product = product).exists()
     context = {
-        'product': product
+        'product': product,
+        'in_cart': in_cart
     }
     return render(request, 'product_detail.html', context)
 
