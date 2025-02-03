@@ -5,9 +5,10 @@ from .models import *
 
 def cart(request):
     try:
+        total =  tax= gen_total= quantity = 0
+        cart_items = None
         cart = Cart.objects.get(session_id=_cart_id(request))
         cart_items = CartItem.objects.filter(cart=cart, is_active=True)
-        total = quantity = 0
         for cart_item in cart_items:
             total += (cart_item.product.price * cart_item.quantity)
         tax = (total * 2)/100

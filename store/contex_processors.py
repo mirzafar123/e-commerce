@@ -1,6 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
-from .views import _cart_id
-from .models import CartItem, Cart
+from cart.views import _cart_id
+from cart.models import CartItem, Cart
 
 
 def counter(request):
