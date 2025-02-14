@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container mt-5">
+  <h2 class="text-center">Profilni Yangilash</h2>
+
+  <!-- Xabarlarni chiqarish -->
+  {% if messages %}
+  <div class="alert alert-info">
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <div class="row">
+      <!-- Foydalanuvchi malumotlari -->
+      <div class="col-md-6">
+        <h4>Foydalanuvchi Ma'lumotlari</h4>
+        {{ user_form.as_p }}
+        <button type="submit" name="update_profile" class="btn btn-success">
+          Yangilash
+        </button>
+      </div>
+
+      <!-- Parol o'zgartirish -->
+      <div class="col-md-6">
+        <h4>Parolni O‘zgartirish</h4>
+        {{ password_form.as_p }}
+        <button type="submit" name="change_password" class="btn btn-warning">
+          Parolni Yangilash
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
